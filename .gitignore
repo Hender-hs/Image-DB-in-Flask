@@ -1,0 +1,5 @@
+.env
+/files
+/filestest
+/venv
+/app/__pycache__
