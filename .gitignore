@@ -1,6 +1,7 @@
 .env
-/files
-/filestest
-/venv
-/app/__pycache__
-*/app/kenzie/image/__pycache__/
+**/files/__pycache__
+**/files
+**/filestest
+**/venv
+**/app/__pycache__
+**/app/kenzie/image/__pycache__/

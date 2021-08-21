@@ -1,16 +1,18 @@
 import os
 from flask                                  import Flask, request, jsonify, send_from_directory
+from environs                               import Env
 from .kenzie.image.upload_files             import uploading_files, checking_extensions, getting_all_uploaded_files_in_folder, getting_request_files_names
 from .kenzie.image.type_files_list          import type_list
 from .kenzie.image.especific_file           import especific_file_download
 from .kenzie.image.zip_files_to_download    import ziping_files
 from .kenzie.image.get_all_uploaded_files   import getting_all_uploaded_files
 
+env = Env()
+env.read_env()
 
-UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER')
+UPLOAD_FOLDER = os.environ['UPLOAD_FOLDER']
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'gif'}
-
 
 def creating_directories():
 
@@ -58,7 +60,7 @@ def upload_files():
 
     except:
 
-        return {'msg': 'some of your file is too large (size limit: 1MB)'}, 431
+        return {'msg': 'some of your file is too large (size limit: 1MB)'}, 413
 
 
 
@@ -98,14 +100,13 @@ def download_especifc_file(file_name: str):
 
 @app.get('/download-zip')
 def download_zip_files():
-
     try:
 
-        func_return = ziping_files(request.args)
+        func_return = ziping_files(request.args, UPLOAD_FOLDER)
 
         if func_return == 'successful':
 
-            return send_from_directory('/../../../tmp/', 'all_files.zip', as_attachment=True), 200
+            return send_from_directory('/tmp/', 'all_files.zip', as_attachment=True), 200
 
         return {'msg': func_return}, 404
 

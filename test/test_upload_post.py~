@@ -1,0 +1,18 @@
+from flask.testing import FlaskClient
+from app import app
+from pytest import fixture
+
+print(dir(app))
+
+def app_client():
+
+    return app.test_client()
+
+def test_upload_response_and_storeg_file():
+
+    client = app_client()
+
+    response = client.post('/upload', data={'file': 'kenzie.jpg'})
+
+    print(response)
+
