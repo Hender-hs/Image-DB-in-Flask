@@ -1,7 +1,7 @@
-from app import app
-import os
 from werkzeug.datastructures import FileStorage
 from environs import Env
+from app import app
+import os
 
 
 env = Env()
@@ -13,11 +13,13 @@ test_client = app.test_client()
 
 upload_folder = os.environ.get('UPLOAD_FOLDER')
 
+files_folder_test = os.environ.get('FILES_TEST')
+
 
 def test_upload_response_201_and_storage_file():
 
 
-    with open('kenzie.png', 'rb') as file:
+    with open(f'{files_folder_test}/kenzie.png', 'rb') as file:
 
         file_storage = FileStorage(stream=file, filename='kenzie.png', content_type='image/png')
 
@@ -32,16 +34,14 @@ def test_upload_response_201_and_storage_file():
 
 
 
-
-
 def test_upload_response_409_file_already_exists():
 
 
-    with open('kenzie.png', 'rb') as file:
+    with open(f'{files_folder_test}/kenzie.png', 'rb') as file:
 
         file_storage = FileStorage(stream=file, filename='kenzie.png', content_type='image/png')
 
-        response = test_client.post('/upload', data={'file': file}, content_type='multipart/form-data')
+        response = test_client.post('/upload', data={'file': file_storage}, content_type='multipart/form-data')
 
         expected = 409
 
@@ -53,7 +53,7 @@ def test_upload_response_409_file_already_exists():
 def test_upload_response_415_extension_not_allowed():
 
     
-    with open('kenzie.bin', 'rb') as file:
+    with open(f'{files_folder_test}/kenzie.bin', 'rb') as file:
 
         file_storage = FileStorage(stream=file, filename='kenzie.bin', content_type='application/octet-stream')
 
@@ -68,7 +68,7 @@ def test_upload_response_415_extension_not_allowed():
 
 def test_upload_reponse_431_file_too_large():
 
-    with open('kenzie-large.png', 'rb') as file:
+    with open(f'{files_folder_test}/kenzie-large.png', 'rb') as file:
 
         file_storage = FileStorage(stream=file, filename='kenzie-large.png', content_type='image/png')
 

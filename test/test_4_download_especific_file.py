@@ -1,4 +1,11 @@
+from environs import Env
 from app import app
+import os
+
+env = Env()
+env.read_env()
+
+files_folder_test = os.environ.get('FILES_TEST')
 
 test_client = app.test_client()
 
@@ -7,7 +14,7 @@ def test_make_download_of_a_existing_especific_file_200():
 
     response = test_client.get('/download/kenzie.png')
 
-    with open('kenzie.png', 'rb') as file:
+    with open(f'{files_folder_test}/kenzie.png', 'rb') as file:
         
         expected = file.read()
 

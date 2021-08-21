@@ -1,11 +1,11 @@
-import os
+from kenzie.image.upload_files              import uploading_files, checking_extensions, getting_all_uploaded_files_in_folder, getting_request_files_names
 from flask                                  import Flask, request, jsonify, send_from_directory
+from kenzie.image.get_all_uploaded_files    import getting_all_uploaded_files
+from kenzie.image.especific_file            import especific_file_download
+from kenzie.image.zip_files_to_download     import ziping_files
+from kenzie.image.type_files_list           import type_list
 from environs                               import Env
-from .kenzie.image.upload_files             import uploading_files, checking_extensions, getting_all_uploaded_files_in_folder, getting_request_files_names
-from .kenzie.image.type_files_list          import type_list
-from .kenzie.image.especific_file           import especific_file_download
-from .kenzie.image.zip_files_to_download    import ziping_files
-from .kenzie.image.get_all_uploaded_files   import getting_all_uploaded_files
+import os
 
 env = Env()
 env.read_env()

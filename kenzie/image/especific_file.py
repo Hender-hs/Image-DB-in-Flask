@@ -1,4 +1,4 @@
-from os import listdir, walk
+from os import walk
 
 def especific_file_download(file_name, UPLOAD_FOLDER):
 
