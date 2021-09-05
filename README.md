@@ -24,6 +24,7 @@
 ## Technologies Used
 - Python - version 3
 - Flask - version 2.0
+- Functional Programming
 
 
 ## Features
