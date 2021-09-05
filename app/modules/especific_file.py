@@ -1,6 +1,6 @@
 from os import walk
 
-def especific_file_download(file_name, UPLOAD_FOLDER):
+def get_especific_file_to_download(file_name, UPLOAD_FOLDER):
 
 
     def getting_current_file_dir():

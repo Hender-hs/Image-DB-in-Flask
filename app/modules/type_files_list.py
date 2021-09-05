@@ -1,6 +1,6 @@
 from os import listdir
 
-def type_list(type: str, UPLOAD_FOLDER: str):
+def type_upload_folder_list(type: str, UPLOAD_FOLDER: str):
 
     try:
 

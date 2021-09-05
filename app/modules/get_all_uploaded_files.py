@@ -2,7 +2,6 @@ from os import walk, listdir
 
 def getting_all_uploaded_files(UPLOAD_FOLDER):
 
-
     walked_files = {}
     
     def creating_a_dict_with_types():
@@ -17,27 +16,29 @@ def getting_all_uploaded_files(UPLOAD_FOLDER):
 
     
 
-    def setting_files_in_dict(item):
+    def mounting_folder_uploaded_files_dict_response(item):
         
-        key = item[0].split('/')[-1]
+        folder_type_name = item[0].split('/')[-1]
 
-        if (key == 'files'):
+        if (folder_type_name == 'uploaded_files'):
             
             return
 
-        prop_value = walked_files.get(key)
-
-        walked_files.update({key: item[2]})
+        walked_files.get(folder_type_name)
+        
+        walked_files.update({folder_type_name: item[2]})
             
 
 
-    def walking_dir():
+    def walking_on_upload_folder():
+
+        print(list(walk(UPLOAD_FOLDER)))
 
         for item in walk(UPLOAD_FOLDER):
 
-            setting_files_in_dict(item)
+            mounting_folder_uploaded_files_dict_response(item)
 
-    walking_dir()
+    walking_on_upload_folder()
 
 
     return walked_files

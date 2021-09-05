@@ -37,7 +37,7 @@ def uploading_files(request_files, UPLOAD_FOLDER):
         file_type = filename.split('.')[-1]
 
 
-        def creating_if_not_has_type_folder():
+        def create_if_not_has_type_folder():
 
             if not file_type in listdir(UPLOAD_FOLDER):
 
@@ -45,7 +45,8 @@ def uploading_files(request_files, UPLOAD_FOLDER):
 
                 makedirs(target_path)
         
-        creating_if_not_has_type_folder()
+        create_if_not_has_type_folder()
+        
 
         path_type = path.join(UPLOAD_FOLDER, file_type, filename)
 
