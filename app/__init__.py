@@ -10,7 +10,7 @@ UPLOAD_FOLDER = os.environ['UPLOAD_FOLDER']
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'gif', 'jpeg'}
 
 
-def create_upload_folder():
+def create_upload_folder() -> None:
 
     if not os.path.exists(UPLOAD_FOLDER):
 

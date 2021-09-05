@@ -1,6 +1,6 @@
-from os import system, path, getcwd
+from os import system, path
 
-def ziping_files(request_args, UPLOAD_FOLDER):
+def ziping_files(request_args: dict, UPLOAD_FOLDER: str) -> str:
 
     file_type = request_args['file_type']
 

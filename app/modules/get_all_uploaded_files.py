@@ -1,10 +1,10 @@
 from os import walk, listdir
 
-def getting_all_uploaded_files(UPLOAD_FOLDER):
+def getting_all_uploaded_files(UPLOAD_FOLDER: str) -> dict :
 
     walked_files = {}
     
-    def creating_a_dict_with_types():
+    def creating_a_dict_with_types() -> None :
 
         directories_type = listdir(UPLOAD_FOLDER) 
         
@@ -16,7 +16,7 @@ def getting_all_uploaded_files(UPLOAD_FOLDER):
 
     
 
-    def mounting_folder_uploaded_files_dict_response(item):
+    def mounting_folder_uploaded_files_dict_response(item: list) -> None :
         
         folder_type_name = item[0].split('/')[-1]
 
@@ -30,7 +30,7 @@ def getting_all_uploaded_files(UPLOAD_FOLDER):
             
 
 
-    def walking_on_upload_folder():
+    def walking_on_upload_folder() -> None :
 
         print(list(walk(UPLOAD_FOLDER)))
 

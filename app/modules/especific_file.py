@@ -1,9 +1,9 @@
 from os import walk
 
-def get_especific_file_to_download(file_name, UPLOAD_FOLDER):
+def get_especific_file_to_download(file_name: str, UPLOAD_FOLDER: str) -> tuple :
 
 
-    def getting_current_file_dir():
+    def getting_current_file_dir() -> list :
 
         current_dir_files = []
         
@@ -24,7 +24,7 @@ def get_especific_file_to_download(file_name, UPLOAD_FOLDER):
     file_to_download = ''.join(list(filter(lambda item: item.lower() == file_name.lower(), current_dir_files)))
 
 
-    def find_path_of_file_to_download():
+    def find_path_of_file_to_download() -> str :
 
         path = file_to_download.split('.')[-1]
 

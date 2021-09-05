@@ -1,13 +1,13 @@
 from os import makedirs, path, listdir, walk
 
 
-def getting_request_files_names(request_files):
+def getting_request_files_names(request_files: dict) -> list:
 
     return [request_files[item].filename for item in request_files]
 
 
 
-def getting_all_uploaded_files_in_folder(UPLOAD_FOLDER):
+def getting_all_uploaded_files_in_folder(UPLOAD_FOLDER: str) -> set:
      
     all_files = []
      
@@ -19,16 +19,16 @@ def getting_all_uploaded_files_in_folder(UPLOAD_FOLDER):
 
 
 
-def checking_extensions(request_files):
+def checking_extensions(request_files: dict) -> set:
 
     return set([request_files[item].filename.split('.')[-1] for item in request_files])
 
 
 
-def uploading_files(request_files, UPLOAD_FOLDER):
+def uploading_files(request_files: dict, UPLOAD_FOLDER: str) -> list :
 
     
-    def saving_files_from_form_in_folder(item_name):
+    def saving_files_from_form_in_folder(item_name: str) -> str:
 
         sent_file = request_files[item_name]
 
@@ -37,7 +37,7 @@ def uploading_files(request_files, UPLOAD_FOLDER):
         file_type = filename.split('.')[-1]
 
 
-        def create_if_not_has_type_folder():
+        def create_if_not_has_type_folder() -> None:
 
             if not file_type in listdir(UPLOAD_FOLDER):
 
@@ -55,7 +55,7 @@ def uploading_files(request_files, UPLOAD_FOLDER):
         return filename
 
 
-    def looping_uploaded_files():
+    def looping_uploaded_files() -> list :
 
         return [saving_files_from_form_in_folder(item) for item in request_files]
 
